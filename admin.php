@@ -11,6 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
 </head>
+
+
+
 <body>
     <form action="" method="GET">
         <input type="text" name="term" id="term">
@@ -59,7 +62,7 @@
                         <td><?php echo $row['message'] ?></td>
                         <td>
                             <a href="/info/edit.php?id=<?php echo $row['id'] ?>">Edit</a>
-                            <form action="/info/delete.php">
+                            <form action="/info/delete.php" onsubmit="return confirm('Are you sure you want to delete this Data?')">
                                 <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
                                 <input type="submit" name="delete" value="Delete">
                             </form>

@@ -35,7 +35,7 @@ if(isset($_POST['submit'])) {
         }
         // back to previous page
 
-        echo "<script>setTimeout(() => { window.location.href='/IMPORTANT/Puppals/contacts.html' }, 2000)</script>";
+        echo "<script>setTimeout(() => { window.location.href='/info/IMPORTANT/Puppals/contacts.html' }, 2000)</script>";
         die();
     }
 
@@ -47,7 +47,7 @@ if(isset($_POST['submit'])) {
 
     echo 'Successfully inserted to the table.';
 
-    echo "<script>setTimeout(() => { window.location.href='/IMPORTANT/Puppals/contacts.html' }, 2000)</script>";
+    echo "<script>setTimeout(() => { window.location.href='/info/IMPORTANT/Puppals/contacts.html' }, 2000)</script>";
 }
 ?>
 

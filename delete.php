@@ -1,14 +1,16 @@
 <?php
     // including data connection file
-    include("config.php");
+    include("phpfile/config.php");
 
     // getting id of data
-    $id = $_GET['id'];
+    $id = $_GET['id'] ?? '';
+    $id = mysqli_escape_string($mysqli, $id);
+    $statement = mysqli_prepare($mysqli, "DELETE FROM `owner_list` WHERE `id` =  ?");
+    mysqli_stmt_bind_param($statement, 's', $id);
+    $res = mysqli_stmt_execute($statement);
 
-    // deleting row table
-    $result = mysqli_query($mysqli, "DELETE FROM owner_list WHERE id=$id");
-
-    // redirecting to display page
-    header("Location:/info/admin.php");
+    if ($res) echo "Matagumpay na nabura";
+    
+    echo "<script>setTimeout(() => { window.location.href='/info/admin.php' }, 2000)</script>";
 
 ?>

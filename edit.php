@@ -1,11 +1,12 @@
 <?php
-include_once("config.php");
+include_once("phpfile/config.php");
 
-    
+$id = $_GET['id'] ?? '';
+
 if(isset($_POST['update'])) {
     // echo "<pre>";
-    // die(var_dump($_POST));
 
+    $id = $_POST['id'] ?? '';
     $name = $_POST['name'] ?? '';
     $email = $_POST['email'] ?? '';
     $phone = $_POST['phone_number'] ?? '';
@@ -35,18 +36,28 @@ if(isset($_POST['update'])) {
         echo "<script>setTimeout(() => { window.location.href='/IMPORTANT/Puppals/contacts.html' }, 2000)</script>";
         die();
     }
-    $statement = mysqli_prepare($mysqli, "UPDATE `owner_list` (`name`, `email`, `phone_number`, `message`) VALUES (?, ?, ?, ?)");
-    mysqli_stmt_bind_param($statement, 'ssss', $name, $email, $phone, $message);
-    mysqli_stmt_execute($statement);
+    $statement = mysqli_prepare($mysqli, "UPDATE `owner_list` SET `name` = ?, `phone_number` = ?, `email` = ?, `message` = ? WHERE `id` = ?");
+    mysqli_stmt_bind_param($statement, 'sssss', $name, $phone, $email, $message ,$id);
+    $res = mysqli_stmt_execute($statement);
 
-    echo 'Successfully edited the table.';
+    if ($res) {
+        echo 'Successfully edited the table.';
+
+        header('Location: admin.php');
+    } else {
+        echo 'Something went wrong.';
+    }
+
 }
 ?>
 <?php 
 
-$statement = mysqli_prepare($mysqli, "SELECT * FROM `owner_list` WHERE (`name`, `email`, `phone_number`, `message`) VALUES (?, ?, ?, ?)");
-    mysqli_stmt_bind_param($statement, 'ssss', $name, $email, $phone, $message);
+$statement = mysqli_prepare($mysqli, "SELECT * FROM `owner_list` WHERE `id` = ?");
+    mysqli_stmt_bind_param($statement, 's', $id);
     mysqli_stmt_execute($statement);
+    $res = mysqli_stmt_get_result($statement);
+    $row = mysqli_fetch_assoc($res);
+    // var_dump($row);
 
 ?>
 
@@ -65,19 +76,19 @@ $statement = mysqli_prepare($mysqli, "SELECT * FROM `owner_list` WHERE (`name`, 
         <table border="0">
             <tr>
                 <td>Name</td>
-                <td><input type="text" name="name" value="<?php echo $name;?>"></td>
+                <td><input type="text" name="name" value="<?php echo $row['name'];?>"></td>
             </tr>
             <tr>
             <td>Email</td>
-                <td><input type="text" name="email" value="<?php echo $email;?>"></td>
+                <td><input type="text" name="email" value="<?php echo $row['email'];?>"></td>
             </tr>
             <tr>
             <td>Phone Number</td>
-                <td><input type="text" name="phone_number" value="<?php echo $phone;?>"></td>
+                <td><input type="text" name="phone_number" value="<?php echo $row['phone_number'];?>"></td>
             </tr>
             <tr>
             <td>Message</td>
-                <td><input type="text" name="message" value="<?php echo $message;?>"></td>
+                <td><input type="text" name="message" value="<?php echo $row['message'];?>"></td>
             </tr>
             <tr>
                 <td><input type="hidden" name="id" value="<?php echo $_GET['id'];?>"></td>
