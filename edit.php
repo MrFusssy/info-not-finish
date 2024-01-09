@@ -68,6 +68,48 @@ $statement = mysqli_prepare($mysqli, "SELECT * FROM `owner_list` WHERE `id` = ?"
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Data</title>
 </head>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+    th, td {
+        border: 5px solid;
+        border-color: #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+
+    input[type="text"] {
+        border: none;
+    }
+    input[type="submit"] {
+        padding: 5px 10px 5px 10px ;
+        border-color: #ddd;
+    }
+    input[type="submit"]:hover {
+        background-color: black;
+        color: #ddd;
+    }
+
+    a {
+        padding: 5px;
+        border: 2px solid #ddd;
+        text-decoration: none;
+        color: black;
+    }
+    a:hover {
+        background-color: black;
+        color: #ddd;
+    }
+
+
+</style>
 <body>
     <a href="admin.php">Admin</a>
     <br><br>

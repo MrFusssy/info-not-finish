@@ -11,9 +11,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
 </head>
+<style>
+
+    input[type="text"] {
+        margin: 20px 3px 20px 20px ;
+        border-color: #ddd;
+    }
+
+    input[name="search"] {
+        padding: 4px;
+        margin: 5px;
+        border-color: #ddd;
+    }
+    input[name="search"]:hover {
+        background-color: black;
+        color: #ddd;
+    }
+
+
+    input[name="delete"] {
+        padding: 4px;
+        margin: 5px;
+        border-color: #ddd;
+    }
+    input[name="delete"]:hover {
+        background-color: black;
+        color: #ddd;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+
+    a {
+        padding: 4px 10px 2px 10px;
+        border: 2px solid #ddd;
+        text-decoration: none;
+        color: black;
+        margin-left: 4.5px;
+    }
+    a:hover {
+        background-color: black;
+        color: #ddd;
+    }
 
 
 
+</style>
 <body>
     <form action="" method="GET">
         <input type="text" name="term" id="term">

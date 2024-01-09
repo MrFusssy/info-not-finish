@@ -9,8 +9,8 @@
     mysqli_stmt_bind_param($statement, 's', $id);
     $res = mysqli_stmt_execute($statement);
 
-    if ($res) echo "Matagumpay na nabura";
+    if ($res) echo "Successfullt Deleted";
     
-    echo "<script>setTimeout(() => { window.location.href='/info/admin.php' }, 2000)</script>";
+    echo "<script>setTimeout(() => { window.location.href='/info/admin.php' }, 3000)</script>";
 
 ?>
